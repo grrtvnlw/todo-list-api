@@ -1,98 +1,66 @@
-body {
-    background: #151515;
-    color: #fff;
-    font-family: sans-serif;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: blue;
 }
 
 .container {
-    max-width: 95%;
-    margin: 30px auto;
-    width: 600px;
+  height: 100vh;
+  width: 100vw;
+} 
+
+.todoList {
+  background-color: #999;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.card {
-    background-color: #23293d;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px 0 #000;
+.currentList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.todo-title {
-    margin: 0 0 20px 0;
-    border-bottom: 2px solid #4e5464;
-    padding: 0 0 10px 0;
+.todo {
+  background-color: white;
+  margin: 20px;
+  padding-left: 5px;
+  padding-right: 3px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
 }
 
-.todo-list {
-    display: block;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+.todoText {
+  text-align: center;
 }
 
-.todo-item {
-    display: flex;
-    margin-bottom: 10px;
+span {
+  padding-left: 5px;
+  /* padding-right: 5px; */
 }
 
-.todo-form {
-    display: inline-flex;
-    flex-grow: 1;
-    margin-right: 7px;
+span:hover,
+.addTodo:hover {
+  cursor: pointer;
 }
 
-.todo-form-input {
-    color: #fff;
-    background-color: transparent;
-    border: 0;
-    border-bottom: 2px solid transparent;
-    margin: 0 7px 0 0;
-    padding: 0;
-    font-size: 18px;
-    flex-grow: 1;
+input[type=text] {
+  width: 100%;
+  border:none;
+  background-image:none;
+  background-color:transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
-.todo-form-input:hover {
-    border-color: #4e5464;
-}
-
-.todo-form-input:focus {
-    border-color: #26c6da;
-    outline: none;
-}
-
-.new-todo-form {
-    display: flex;
-    margin-top: 20px;
-}
-
-.new-todo-text {
-    background: #4e5464;
-    border: none;
-    font-size: 18px;
-    margin-right: 7px;
-    flex-grow: 1;
-    color: #FFF;
-}
-
-.todo-button {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 5px;
-    height: 22px;
-}
-
-.todo-button.add {
-    background-color: #8bc34a;
-}
-
-.todo-button.save {
-    background-color: #2196f3;
-}
-
-.todo-button.delete {
-    background-color: #c62828;
-    color: #FFF;
+input[type=text]:focus {
+  outline: none;
 }

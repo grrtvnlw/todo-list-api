@@ -37,6 +37,7 @@ app.get("/api/todos/:id", (req, res) => {
 // app.get("/api/todos/:id", (req, res) => res.send(todoList.filter(todo => todo.id == req.params.id)));
 // POST /api/todos
 app.post('/api/todos', (req, res) => {
+  console.log(req);
   if (!req.body.todo) {
     res.status(400).json({
       error: 'Please provide todo text.'
