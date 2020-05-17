@@ -59,6 +59,7 @@ app.post('/api/todos', (req, res) => {
 });
 // PUT /api/todos/:id
 app.put('/api/todos/:id', (req, res) => {
+  console.log(req)
   if (!req.body || !req.body.todo) {
     res.status(400).json({
       error: 'Provide todo text',

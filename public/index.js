@@ -29,15 +29,31 @@ $(document).keypress(function(e) {
 
 $(document).on('click', '.edit', function() {
   let id = $(this).parent().attr('id');
-  console.log(id);
-  let textValue = $(this).prev().attr('value');
-  console.log(textValue);
-    // if (textValue === undefined) {
-    //   return; 
+  let clear = ' ';
+  let editDone = `
+    <input type="text" class="updatedTodo" value=""></input>
+    <span class="editDone">☑️</span>
+    <span class="edit">📝</span>
+    <span class="delete">✖️</span>
+  `;
+  let innerHTML = $(this).parent()
+  $(innerHTML).html(editDone);
   axios.put(`/api/todos/${id}`, {
-    todo: textValue,
-  })
-  updateTodoList()
+    todo: clear,
+  });
+});
+
+$(document).on('click', '.editDone', function() {
+  let id = $(this).parent().attr('id');
+  let textValue = $('.updatedTodo').val();  
+  if (textValue === undefined) {
+    return; 
+  } else {
+    axios.put(`/api/todos/${id}`, {
+      todo: textValue,
+    });
+  };
+  updateTodoList();
 });
 
 $(document).on('click', '.delete', function() {
@@ -70,4 +86,4 @@ function updateTodoList() {
         $('.currentList').append(renderTodo(toDo));
       });
     });
-}
+};
