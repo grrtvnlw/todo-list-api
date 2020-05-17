@@ -5,10 +5,10 @@ $(document).ready(function () {
 $('.add').on('click', function(e) {
   e.preventDefault();
   $('.currentList').append(`
-    <div class="todo">
+    <div class="todo" id="">
       <input type="text" class="newTodo" value=""></input>
       <span class="edit">📝</span>
-      <span class="delete" id="">✖️</span>
+      <span class="delete">✖️</span>
     </div>
   `);
 });
@@ -17,10 +17,10 @@ $(document).keypress(function(e) {
   if (e.which == 13) {//Enter key pressed
     let textValue = $('.newTodo').val()
     if (textValue === undefined) {
-      return 
+      return;
     } else {
       axios.post('/api/todos', {
-        todo: textValue
+        todo: textValue,
       });
       updateTodoList();
     }
@@ -28,11 +28,20 @@ $(document).keypress(function(e) {
 });
 
 $(document).on('click', '.edit', function() {
-  console.log("edit clicked!")
+  let id = $(this).parent().attr('id');
+  console.log(id);
+  let textValue = $(this).prev().attr('value');
+  console.log(textValue);
+    // if (textValue === undefined) {
+    //   return; 
+  axios.put(`/api/todos/${id}`, {
+    todo: textValue,
+  })
+  updateTodoList()
 });
 
 $(document).on('click', '.delete', function() {
-  let id = (this.id)
+  let id = $(this).parent().attr('id');
   axios.delete(`/api/todos/${id}`)
     .then((response) => {
       $('.currentList').html(' ');
@@ -44,10 +53,10 @@ $(document).on('click', '.delete', function() {
 
 function renderTodo(toDo) {
   let html = `
-    <div class="todo">
+    <div class="todo" id="${toDo.id}">
       <input type="text" class="todoText" value="${toDo.todo}"></input>
       <span class="edit">📝</span>
-      <span class="delete" id="${toDo.id}">✖️</span>
+      <span class="delete">✖️</span>
     </div>
   `
   return html;
